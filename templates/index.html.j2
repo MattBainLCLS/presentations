@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>{{ title }}</title>
+{% if noindex %}
+    <meta name="robots" content="noindex, nofollow" />
+{% endif %}
+
+    <!-- Lato font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+        options: { skipHtmlTags: ['script','noscript','style','textarea'] },
+        svg: { fontCache: 'global', scale: 1 },
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- Reveal.js base styles (vendored, shared/reveal) -->
+    <link rel="stylesheet" href="reveal/dist/reset.css" />
+    <link rel="stylesheet" href="reveal/dist/reveal.css" />
+    <link rel="stylesheet" href="reveal/dist/theme/white.css" />
+
+    <!-- SLAC theme (overrides white.css) -->
+    <link rel="stylesheet" href="theme/css/slac-theme.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+{{ slides_html }}
+
+      </div><!-- /.slides -->
+
+      <!-- Stanford+DOE logo — visible on title slide only -->
+      <img
+        id="title-stanford-doe"
+        src="theme/assets/logos/stanford_doe_logo.png"
+        alt="Stanford University / U.S. Department of Energy"
+        style="position:fixed; bottom:12px; right:18px; height:52px; width:auto; z-index:200; transition:opacity 0.3s;"
+      />
+
+      <!-- SLAC logo — visible on title slide only -->
+      <img
+        id="title-logo"
+        src="theme/assets/logos/slac_logo.svg"
+        alt="SLAC"
+        style="position:fixed; bottom:12px; left:18px; height:52px; width:auto; z-index:200; transition:opacity 0.3s;"
+      />
+
+      <!-- Footnote overlay — content swapped per slide by slac-theme-config.js -->
+      <div id="footnote-overlay"></div>
+
+      <!-- Persistent footer (hidden on title slide) -->
+      <div class="slac-footer" id="slac-footer">
+        <img class="logo" src="theme/assets/logos/slac_logo_red.png" alt="SLAC" />
+        <span class="footer-slide-num" id="footer-slide-num"></span>
+      </div>
+
+    </div><!-- /.reveal -->
+
+    <!-- Reveal.js (vendored, shared/reveal) -->
+    <script src="reveal/dist/reveal.js"></script>
+    <script src="reveal/plugin/notes/notes.js"></script>
+
+{% if reveal_config_overrides %}
+    <script>
+      window.__DECK_REVEAL_CONFIG__ = {{ reveal_config_overrides | tojson }};
+    </script>
+{% endif %}
+
+    <!-- SLAC theme config & chrome behaviour -->
+    <script src="theme/js/slac-theme-config.js"></script>
+
+  </body>
+</html>

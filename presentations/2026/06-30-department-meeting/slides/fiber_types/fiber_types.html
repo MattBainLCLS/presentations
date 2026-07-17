@@ -1,0 +1,45 @@
+        <section>
+          <h3 style="margin: 0 0 0.3em;">Fiber Types</h3>
+          <img src="figures/hcf_comparison.svg"
+               style="width: 100%; max-height: 240px; object-fit: contain;" />
+          <div style="display: flex; gap: 1.2em; align-items: flex-start; font-size: 0.38em; margin-top: 0.4em;">
+
+            <div class="col-box" style="flex: 0.65; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>Solid Core Fiber</h3>
+              <ul>
+                <li>Core: solid silica (<em>n</em> ≈ 1.45); Cladding: slightly lower-<em>n</em> doped silica</li>
+                <li>Guidance via <strong>Total Internal Reflection</strong> — requires <em>n</em><sub>core</sub> &gt; <em>n</em><sub>cladding</sub></li>
+                <li>Light in glass — high material dispersion and Kerr nonlinearity</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1.35; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>Hollow Core Fiber</h3>
+              <ul>
+                <li>Core: gas or vacuum; Cladding: microstructured silica — TIR <em>impossible</em></li>
+                <li>Light through gas — ~1000× lower dispersion and nonlinearity than solid core</li>
+                <li><strong>Photonic Bandgap (PBG):</strong> periodic cladding creates a reflective bandgap — low loss, but narrow bandwidth and fragile</li>
+                <li><strong>Anti-Resonant (AR):</strong> tube diameter tuned for destructive interference in the walls — low loss, broad bandwidth, but fragile</li>
+                <li><strong>Hollow Capillary:</strong> guidance via grazing-angle reflectivity — lower transmission, but tolerates high-intensity pulses</li>
+              </ul>
+            </div>
+
+          </div>
+          <aside class="notes">
+            <p><strong>Solid-Core Fibre</strong></p>
+            <ul>
+              <li>Light guided by Total Internal Reflection (TIR) — requires n_core &gt; n_cladding (~1.45 silica vs ~1.44 doped cladding).</li>
+              <li>Light travels entirely through glass: subject to full material dispersion and Kerr nonlinearity.</li>
+              <li>The reference point — everything hollow-core is measured against this.</li>
+            </ul>
+            <p><strong>Anti-Resonant HCF</strong></p>
+            <ul>
+              <li>Guidance via anti-resonant reflection: the capillary tube diameter is tuned so that the operating wavelength falls between Fabry–Pérot resonances of the glass wall.</li>
+              <li>This is the architecture used in this work.</li>
+            </ul>
+            <p><strong>Key Comparison Point</strong></p>
+            <ul>
+              <li>In all hollow-core designs, light propagates through air/gas: nonlinearity reduced ~1000×, material dispersion ~1000× lower than glass.</li>
+            </ul>
+          </aside>
+        </section>

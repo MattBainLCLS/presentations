@@ -1,0 +1,20 @@
+        <section>
+          <h3 style="margin: 0 0 0.35em;">SPM Creates a Chirped Pulse</h3>
+          <img src="figures/spm_chirp.svg"
+               style="width: 100%; max-height: 400px; object-fit: contain; display: block;" />
+          <p style="font-size: 0.36em; color: #555; margin-top: 0.35em; text-align: center;">
+            The instantaneous frequency shift $\delta\omega(t)=-\frac{n_2\omega_0 L}{c}\frac{dI}{dt}$
+            is negative (red-shifted) on the rising edge and positive (blue-shifted) on the falling edge.
+            The pulse exits the fibre with <em>positive chirp</em> — reds at the front, blues at the back —
+            and is therefore stretched in time relative to its transform limit.
+            A compressor applying equal and opposite (negative) GDD realigns all components, recovering the short pulse.
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>This is the key link between SPM and post-compression. SPM does two things simultaneously: it broadens the spectrum (good — more bandwidth means shorter transform-limited duration) and it imposes a positive chirp (bad — the new frequency components are temporally sorted, stretching the pulse).</li>
+              <li>Left panel: the instantaneous frequency δω follows −dI/dt. On the leading edge (rising intensity) dI/dt &gt; 0 so δω &lt; 0 → red-shift. On the trailing edge dI/dt &lt; 0 so δω &gt; 0 → blue-shift. New red frequencies sit at the front of the pulse; new blue frequencies at the back.</li>
+              <li>Right panels: the transform-limited pulse is short because all frequency components arrive in phase. After SPM the same bandwidth is present but the components are time-ordered (chirped), stretching the pulse by the factor √(1+(φ₂/τ₀²)²). The compressor undoes this by adding negative GDD.</li>
+              <li>Intuition: SPM is like applying a positive GDD to the pulse in the time domain. Prism compressors and chirped mirrors apply the conjugate negative GDD to cancel it.</li>
+            </ul>
+          </aside>
+        </section>

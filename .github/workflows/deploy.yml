@@ -1,0 +1,58 @@
+# Builds every presentation with build.py and deploys dist/ to GitHub Pages.
+#
+# Setup required (one-time, in the GitHub repo's settings — not this file):
+#   Settings -> Pages -> Source: "GitHub Actions"
+#
+# Once that's set, this workflow publishes to:
+#   https://<YOUR_GITHUB_USERNAME_OR_ORG>.github.io/<YOUR_REPO_NAME>/
+# with each deck at .../<year>/<name>/ (public) or .../<year>/<slug>/ (unlisted).
+# Fill in <YOUR_GITHUB_USERNAME_OR_ORG> / <YOUR_REPO_NAME> only in your own head
+# (or docs) — nothing in this file needs to be edited for this to work, GitHub
+# Pages figures the URL out from the repo itself.
+
+name: Deploy presentations to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: Build all presentations
+        run: python build.py --all
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

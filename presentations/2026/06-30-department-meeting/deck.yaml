@@ -1,0 +1,31 @@
+title: "Hollow-Core Fibers for Resonant Dispersive Wave Generation"
+presentation_name: "06-30-department-meeting"
+year: 2026
+
+visibility: unlisted
+frozen: true
+slug: cad0f899
+
+theme: slac
+
+slides:
+  - slides/title/title.html
+  - slides/upcoming_rdw/upcoming_rdw.html
+  - slides/timescales/timescales.html
+  - slides/fiber_types/fiber_types.html
+  - slides/noble_gas_nonlinearity/noble_gas_nonlinearity.html
+  - slides/time_bandwidth/time_bandwidth.html
+  - slides/spm_interactive/spm_interactive.html
+  - slides/soliton_intro/soliton_intro.html
+  - slides/hcf_gvd/hcf_gvd.html
+  - slides/soliton_self_compression/soliton_self_compression.html
+  - slides/soliton_fission_length/soliton_fission_length.html
+  - slides/generating_a_soliton/generating_a_soliton.html
+  - slides/rdw_tunability/rdw_tunability.html
+  - slides/experimental_layout/experimental_layout.html
+  - slides/cxi_implementation/cxi_implementation.html
+  - slides/butadiene_irf/butadiene_irf.html
+  - slides/butadiene_theory/butadiene_theory.html
+  - slides/butadiene_trajectories/butadiene_trajectories.html
+  - slides/scattering_decomposition/scattering_decomposition.html
+  - slides/tmmda/tmmda.html

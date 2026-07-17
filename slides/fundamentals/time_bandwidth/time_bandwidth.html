@@ -1,0 +1,17 @@
+        <section>
+          <h3 style="margin: 0 0 0.35em;">What is an Ultrafast Laser Pulse?</h3>
+          <img src="figures/time_bandwidth.svg"
+               style="width: 100%; max-height: 400px; object-fit: contain;" />
+          <p style="font-size: 0.37em; color: #555; margin-top: 0.3em; text-align: center;">
+            Each frequency component oscillates at its own rate. At $t = 0$ all components are in phase and add constructively.
+            Away from $t = 0$ they rapidly dephase and cancel — the more components (broader bandwidth), the faster the cancellation, and the shorter the pulse: &nbsp; $\Delta t \cdot \Delta\nu \geq 0.44$.
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>This is the Fourier-transform argument for the time-bandwidth product. A pulse is a superposition of monochromatic waves; the shortest possible pulse for a given bandwidth is the transform-limited case where all components are perfectly in phase.</li>
+              <li>The constant 0.44 applies to Gaussian pulses (FWHM in time × FWHM in frequency). Other pulse shapes have different constants (e.g. sech²: 0.315).</li>
+              <li>The side-lobes visible in the superposition are the signature of a rectangular (flat-top) spectrum. A Gaussian-weighted spectrum gives a clean Gaussian pulse with no side-lobes — which is why real laser spectra are apodised or naturally Gaussian-shaped.</li>
+              <li>Key implication: to compress a pulse you must first broaden its spectrum (SPM in the fibre), then correct the spectral phase (chirped mirrors / grating compressor) so all components arrive in phase.</li>
+            </ul>
+          </aside>
+        </section>

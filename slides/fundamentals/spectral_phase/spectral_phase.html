@@ -1,0 +1,45 @@
+        <section>
+          <h3>Spectral Phase — Taylor Expansion</h3>
+
+          <div style="margin: 1.2em auto 2.0em; text-align: center; font-size: 0.62em;">
+            $$\varphi(\omega) = \varphi_0
+              + \underbrace{\left.\frac{d\varphi}{d\omega}\right|_{\omega_0}}_{\mathrm{GD}} \!(\omega - \omega_0)
+              + \frac{1}{2}\underbrace{\left.\frac{d^2\varphi}{d\omega^2}\right|_{\omega_0}}_{\mathrm{GDD}} \!(\omega - \omega_0)^2
+              + \frac{1}{6}\underbrace{\left.\frac{d^3\varphi}{d\omega^3}\right|_{\omega_0}}_{\mathrm{TOD}} \!(\omega - \omega_0)^3
+              + \cdots$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.40em; margin-top: 0.6em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>$\varphi_0$ — Carrier-Envelope Phase</h3>
+              <ul>
+                <li>Constant phase offset; shifts all frequencies equally</li>
+                <li>No effect on pulse shape or duration</li>
+                <li>Only relevant for few-cycle pulses</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>GD — Group Delay</h3>
+              <ul>
+                <li>Linear phase: shifts the envelope in time without distortion</li>
+                <li>Sets pulse arrival time; no effect on duration</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>GDD — Group Delay Dispersion</h3>
+              <ul>
+                <li>Quadratic phase: different frequencies arrive at different times</li>
+                <li>Units: fs² — positive GDD stretches the pulse</li>
+                <li>Dominant term in most optical systems</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>TOD — Third-Order Dispersion</h3>
+              <ul>
+                <li>Cubic phase: creates asymmetric satellite pulses</li>
+                <li>Units: fs³ — significant for broadband (&lt;30 fs) pulses</li>
+                <li>Often the limit on compressed pulse quality</li>
+              </ul>
+            </div>
+          </div>
+        </section>

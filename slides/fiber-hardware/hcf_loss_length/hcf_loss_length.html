@@ -1,0 +1,44 @@
+        <section>
+          <h3>Power Loss Length of a Hollow Capillary Fibre</h3>
+
+          <div style="margin: 0.9em auto 0.8em; text-align: center; font-size: 0.78em;">
+            $$L_\text{loss} \approx \frac{4\pi^2 \overbrace{a^3}^{\text{large core}} }{3\, \underbrace{u_{nm}^2}_{\text{mode}} \, \underbrace{\lambda^2}_{\text{wavelength}}}$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em; margin-top: 0.4em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Core Radius Scaling ($a^3$)</h3>
+              <ul>
+                <li>Loss falls <em>cubically</em> with core radius</li>
+                <li>Doubling $a$ → 8× longer $L_\text{loss}$</li>
+                <li>15 µm core: $L_\text{loss} \approx$ 1 cm — unusable</li>
+                <li>125 µm core: $L_\text{loss} \approx$ metres — practical</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Wavelength Scaling ($\lambda^2$)</h3>
+              <ul>
+                <li>$L_\text{loss} \propto 1/\lambda^2$ — longer wavelengths suffer <em>more</em> loss</li>
+                <li>Moving 800 nm → 1030 nm (Yb): $L_\text{loss}$ drops by 40%</li>
+                <li>Moving to mid-IR (2 µm): $L_\text{loss}$ drops by 6×</li>
+                <li>Working in the IR forces larger core diameters to compensate</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>The Trade-off</h3>
+              <ul>
+                <li>Large core → low loss, high damage threshold ✓</li>
+                <li>Large core → weak waveguide dispersion and effective nonlinearity ✗</li>
+                <li>Solution: choose a heavier fill gas or increase pressure to restore nonlinearity</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>This is equation 2 from Travers et al., Nature Photonics 2019. $u_{nm}$ is the mth zero of Bessel function $J_{n-1}$; for HE₁₁, $u_{11} = 2.405$.</li>
+              <li>The $a^3$ scaling is what makes large-core HCF unique — it's a leaky waveguide (EH₁₁ mode), not truly guided, so loss is intrinsically high at small core sizes.</li>
+              <li>The key engineering insight from the paper: $L_\text{fiss} \propto a^2$ but $L_\text{loss} \propto a^3$, so the ratio $L_\text{fiss}/L_\text{loss} \propto 1/a$ always improves with larger core. There is no fundamental barrier to soliton dynamics in HCF — it just requires a large enough core.</li>
+            </ul>
+          </aside>
+        </section>

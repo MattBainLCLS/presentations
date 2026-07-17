@@ -1,0 +1,44 @@
+        <section>
+          <h3>Soliton Fission Length</h3>
+
+          <div style="margin: 0.9em auto 0.8em; text-align: center; font-size: 0.78em;">
+            $$L_\text{fiss} \approx \frac{a^2 \tau_{fw}}{3N\,|\delta(\lambda_0, \lambda_{zd})|}
+              \propto \frac{\overbrace{a^2}^{\text{core}} \; \overbrace{\tau_{fw}}^{\text{pulse duration}}}{\underbrace{I_0}_{\text{peak intensity}}}$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em; margin-top: 0.4em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>What is $L_\text{fiss}$?</h3>
+              <ul>
+                <li>Length at which a higher-order soliton ($N > 1$) breaks up into $N$ fundamental solitons</li>
+                <li>The point of maximum compression — shortest pulse duration is reached here</li>
+                <li>Requires $L_\text{fiss} &lt; L_\text{loss}$ for compression to occur</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Design Levers</h3>
+              <ul>
+                <li>$L_\text{fiss} \propto a^2$ — larger core increases fission length</li>
+                <li>$L_\text{loss} \propto a^3$ — larger core reduces loss faster</li>
+                <li>Ratio $L_\text{fiss}/L_\text{loss} \propto 1/a$ → always improves with larger core</li>
+                <li>Shorter pulses or higher intensity reduce $L_\text{fiss}$</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Operating Regime</h3>
+              <ul>
+                <li>Coherent compression requires $N &lt; 15$ (above: modulational instability)</li>
+                <li>Upper limit on $I_0$: ionisation threshold of the fill gas</li>
+                <li>This work: $N = 6.8$, $a = 125$ µm, $\tau_{fw} = 26$ fs, 1 bar He</li>
+                <li>$L_\text{fiss} \approx 1.5$ m — comfortably within 3 m fibre</li>
+              </ul>
+            </div>
+          </div>
+          <p class="slide-footnote"><a href="https://doi.org/10.1038/s41566-019-0416-4"><em>Nat. Photonics</em> <strong>13</strong>, 547–554 (2019)</a></p>
+          <aside class="notes">
+            <ul>
+              <li>Equation 3 from Travers et al., Nature Photonics 2019. δ(λ₀, λ_zd) encodes the integrated anomalous GVD between pump and zero-dispersion wavelength.</li>
+              <li>L_fiss/L_loss ∝ 1/a means there is no fundamental barrier to soliton dynamics in HCF — you just need a large enough core.</li>
+            </ul>
+          </aside>
+        </section>

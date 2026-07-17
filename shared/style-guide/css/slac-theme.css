@@ -1,0 +1,142 @@
+/*
+ * slac-theme.css
+ * SLAC National Accelerator Laboratory — Reveal.js theme
+ *
+ * Usage: link this file AFTER reveal.js's base theme (white.css).
+ * All colours are defined as CSS custom properties in :root so they
+ * can be overridden per-presentation if needed.
+ *
+ * Brand colours sourced from SLAC_brand_colors_DIGITAL.ase
+ */
+
+/* ── SLAC brand tokens ────────────────────────────────────────────────────── */
+:root {
+  --slac-red:          #8C1515;   /* Stanford/SLAC cardinal red */
+  --slac-red-light:    #B83A4B;   /* lighter accent for bullet markers */
+  --slac-dark:         #44546A;   /* dark blue-grey for borders, labels */
+  --slac-title-grad:   linear-gradient(225deg, #E04F39 0%, #AF2D24 50%, #8C1515 100%);
+
+  /* Reveal.js theme variable overrides */
+  --r-background-color:    #ffffff;
+  --r-main-font:           'Lato', sans-serif;
+  --r-heading-font:        'Lato', sans-serif;
+  --r-heading-color:       var(--slac-red);
+  --r-heading-font-weight: 400;
+  --r-main-color:          #333333;
+  --r-link-color:          var(--slac-red);
+}
+
+/* ── Global typography ────────────────────────────────────────────────────── */
+.reveal,
+.reveal h1, .reveal h2, .reveal h3,
+.reveal h4, .reveal h5, .reveal h6 {
+  font-family: 'Lato', sans-serif;
+}
+
+/* ── Content slide titles ─────────────────────────────────────────────────── */
+.reveal .slides section h3 {
+  color: var(--slac-red);
+  font-weight: 400;
+  text-align: left;
+  border-bottom: 2px solid var(--slac-red);
+  padding-bottom: 0.2em;
+  margin-bottom: 0.5em;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Override sub-heading h3s inside content columns */
+.reveal .slides section .col-box h3 {
+  border-bottom: none;
+  font-size: 1.2em;
+  margin: 0 0 0.5em;
+  color: var(--slac-red);
+}
+
+/* ── Bullet markers ───────────────────────────────────────────────────────── */
+.reveal .slides section ul li::marker {
+  color: var(--slac-red-light);
+}
+
+/* ── Title slide ──────────────────────────────────────────────────────────── */
+/*
+ * Title slide background is set via a data-background-image attribute on the
+ * <section> element. Add background images to assets/backgrounds/ and point
+ * the attribute at the chosen file. The gradient overlay and text styles
+ * below apply regardless of which background is used.
+ */
+.reveal .slides section.title-slide {
+  text-align: left;
+  padding: 0 1.6em;
+  color: white;
+}
+.reveal .slides section.title-slide h1 {
+  color: white;
+  font-size: 1.55em;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 0.4em;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.reveal .slides section.title-slide p {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.65em;
+  margin: 0.25em 0;
+}
+.reveal .slides section.title-slide .title-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  margin: 0.6em 0;
+}
+
+/* ── Persistent footer ────────────────────────────────────────────────────── */
+.slac-footer {
+  position: fixed;
+  bottom: 10px;
+  left: 12px;
+  right: 24px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 200;
+  transition: opacity 0.3s;
+}
+.slac-footer img.logo {
+  height: 40px;
+  width: auto;
+}
+.footer-slide-num {
+  font-family: 'Lato', sans-serif;
+  font-size: 27px;
+  color: #333333;
+}
+.slac-footer.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Slide footnotes ──────────────────────────────────────────────────────── */
+/* Footnotes are hidden in-place; their content is copied to #footnote-overlay */
+.slide-footnote { display: none; }
+
+#footnote-overlay {
+  position: fixed;
+  bottom: 10px;
+  height: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 19px;
+  line-height: 1;
+  z-index: 210;
+  pointer-events: auto;
+}
+#footnote-overlay a {
+  color: #aaa;
+  text-decoration: none;
+}

@@ -1,0 +1,39 @@
+        <section>
+          <h3 style="margin: 0 0 0.5em;">Spectral Broadening of OPA in S-HCF</h3>
+          <div style="display: flex; gap: 1.4em; align-items: flex-start;">
+
+            <div style="flex: 1;">
+              <img src="figures/opa_fig2.png" style="width: 100%; border-radius: 4px;" />
+              <p style="font-size: 0.33em; color: #555; margin-top: 0.2em; line-height: 1.5;">
+                <strong>Pressure tuning at 401 nm</strong> (Kr, 1 m × 150 µm S-HCF).
+                <span style="color: #E65100;">Shaded = experiment</span>; <strong>black = simulation</strong>.
+                FTL: 70.6 fs → 9.8 fs at 2.5 bar — <strong>7× bandwidth increase</strong>.
+              </p>
+            </div>
+
+            <div style="flex: 0.81;">
+              <img src="figures/opa_fig3.png" style="width: 90%; border-radius: 4px;" />
+              <p style="font-size: 0.33em; color: #555; margin-top: 0.2em; line-height: 1.5;">
+                <strong>Wavelength tunability at 1 bar Kr.</strong>
+                ~17 nm FWHM and FTL 18–25 fs across the full OPA range (370–450 nm).
+                <strong>No optic changes</strong> — only OPA wavelength and pressure.
+              </p>
+            </div>
+
+          </div>
+          <div style="font-size: 0.34em; margin-top: 0.5em; background: #f5f5f5; border-radius: 6px; padding: 0.5em 1em; color: #444; display: flex; gap: 2em; justify-content: center;">
+            <span>Source: Carbide 2 mJ, 330 fs, 33 kHz → Orpheus OPA (SHS, 350–520 nm)</span>
+            <span>Fiber: 1 m, 150 µm core, Kr, stretched S-HCF</span>
+            <span>Post-compression: prism pair or chirped mirrors → <strong>15–30 fs</strong></span>
+            <span style="color: #8C1515;">Kaufman, Larsen, … Bain, Forbes <em>et al.</em>, <em>Opt. Lett.</em> 2025</span>
+          </div>
+          <p class="slide-footnote"><a href="https://doi.org/10.1364/OL.575959"><em>Opt. Lett.</em> <strong>50</strong>, 7464–7467 (2025)</a></p>
+          <aside class="notes">
+            <ul>
+              <li>This is our own work — demonstrating SPM broadening of the OPA second harmonic in a stretched hollow capillary fiber filled with krypton.</li>
+              <li>The key result from Fig 2: single fiber, single gas, just turn the pressure knob — bandwidth increases 7× and FTL drops from 70 fs to sub-10 fs. Simulation (Luna.jl) matches the experiment remarkably well.</li>
+              <li>Fig 3 shows the other tuning axis: fix pressure, scan OPA wavelength across the full mirror bandwidth (370–450 nm). The broadened spectrum stays consistent across the whole range. No realignment needed.</li>
+              <li>Together these two figures show simultaneous tunability in wavelength AND pulse duration — which is exactly what's needed for pump–probe experiments targeting different chromophores.</li>
+            </ul>
+          </aside>
+        </section>

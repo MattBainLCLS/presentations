@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presentations</title>
+    <style>
+      body { font-family: -apple-system, Helvetica, Arial, sans-serif; max-width: 40em; margin: 3em auto; color: #222; }
+      h1 { font-size: 1.4em; }
+      h2 { font-size: 1.1em; color: #555; margin-top: 1.5em; }
+      ul { padding-left: 1.2em; }
+      a { color: #8C1515; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <h1>Presentations</h1>
+{% for year, decks in by_year.items() %}
+    <h2>{{ year }}</h2>
+    <ul>
+{% for deck in decks %}
+      <li><a href="{{ year }}/{{ deck.presentation_name }}/">{{ deck.title }}</a></li>
+{% endfor %}
+    </ul>
+{% endfor %}
+  </body>
+</html>
