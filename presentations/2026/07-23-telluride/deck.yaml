@@ -6,9 +6,6 @@ visibility: unlisted
 frozen: false
 slug: c3824be8
 theme: slac
-reveal_config:
-  transition: slide
-  controls: true
 slides:
 - slides/title/title.html
 - lib: experiments/cxi_irf

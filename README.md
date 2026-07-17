@@ -33,26 +33,33 @@ evolving.
   .venv/bin/pip install -r requirements.txt
   ```
 
-- Local preview: build a deck, then open its `dist/` output directly in a
-  browser, or serve it (required if the deck has interactive iframes):
+- Local preview: build a deck and serve it in one step (this also opens it
+  in your browser). Serving — not just opening `index.html` directly — is
+  required if the deck has interactive iframes:
 
   ```bash
-  .venv/bin/python build.py 2026/06-30-department-meeting
-  cd dist/2026/<name-or-slug> && python3 -m http.server 8000
-  # open http://localhost:8000
+  .venv/bin/python build.py 2026/06-30-department-meeting --preview
   ```
 
 ## Create a new presentation
 
-1. Make a folder: `presentations/<year>/<name>/`.
-2. Write `deck.yaml` (see schema in `build-plan.md`). Reference library
-   slides with `lib: <category>/<name>`; add presentation-specific slides
-   (title, acknowledgements, one-off results) as local files under
-   `presentations/<year>/<name>/slides/<name>/<name>.html`.
+1. Scaffold it — prompts for the date and title, then creates
+   `presentations/<year>/<mm-dd-slug>/` with a starter `deck.yaml`, a title
+   slide, and a blank acknowledgements slide:
+
+   ```bash
+   .venv/bin/python new_presentation.py
+   ```
+
+   Fill in the venue/event placeholder in the generated title slide and the
+   acknowledgements list.
+2. Add `lib: <category>/<name>` entries to `deck.yaml`'s `slides:` list for
+   any library content; add further presentation-specific slides as local
+   files under `presentations/<year>/<name>/slides/<name>/<name>.html`.
 3. Preview locally:
 
    ```bash
-   .venv/bin/python build.py <year>/<name>
+   .venv/bin/python build.py <year>/<name> --preview
    ```
 
    Add `--no-generate` to skip re-running figure-generator scripts for a
