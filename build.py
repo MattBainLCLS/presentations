@@ -41,6 +41,22 @@ def save_deck(deck_yaml_path: Path, deck: dict) -> None:
         yaml.safe_dump(deck, f, sort_keys=False, default_flow_style=False)
 
 
+def generate_slug() -> str:
+    import secrets
+    return secrets.token_hex(4)
+
+
+def ensure_slug(deck_yaml_path: Path, deck: dict) -> dict:
+    """Lazily assign + persist a slug the first time an unlisted deck is
+    built, so authoring/previewing a deck doesn't require freezing it
+    first just to get an output path."""
+    if deck.get("visibility") == "unlisted" and not deck.get("slug"):
+        deck["slug"] = generate_slug()
+        save_deck(deck_yaml_path, deck)
+        print(f"assigned slug {deck['slug']!r} to {deck_yaml_path.parent.name}")
+    return deck
+
+
 def resolve_slides(deck: dict, presentation_dir: Path) -> list[tuple[Path, str]]:
     """Resolve each deck.yaml slide entry to (slide_dir, slide_name).
 
@@ -104,7 +120,7 @@ def copy_theme_and_reveal(dest_dir: Path) -> None:
 
 def build_deck(presentation_dir: Path, no_generate: bool = False) -> Path:
     deck_yaml_path = presentation_dir / "deck.yaml"
-    deck = load_deck(deck_yaml_path)
+    deck = ensure_slug(deck_yaml_path, load_deck(deck_yaml_path))
 
     slide_htmls = []
     for entry, (slide_dir, slide_name) in zip(deck["slides"], resolve_slides(deck, presentation_dir)):
@@ -117,11 +133,6 @@ def build_deck(presentation_dir: Path, no_generate: bool = False) -> Path:
 
     is_unlisted = deck.get("visibility") == "unlisted"
     out_name = deck["slug"] if is_unlisted else deck["presentation_name"]
-    if is_unlisted and not out_name:
-        raise ValueError(
-            f"{presentation_dir.name}: visibility: unlisted requires a slug "
-            f"(run --freeze to auto-generate one, or set slug: manually)"
-        )
     out_dir = DIST / str(deck["year"]) / out_name
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -147,8 +158,6 @@ def build_deck(presentation_dir: Path, no_generate: bool = False) -> Path:
 
 
 def freeze_deck(presentation_dir: Path) -> None:
-    import secrets
-
     deck_yaml_path = presentation_dir / "deck.yaml"
     deck = load_deck(deck_yaml_path)
     if deck.get("frozen"):
@@ -171,7 +180,7 @@ def freeze_deck(presentation_dir: Path) -> None:
     deck["slides"] = new_slides
     deck["frozen"] = True
     if deck.get("visibility") == "unlisted" and not deck.get("slug"):
-        deck["slug"] = secrets.token_hex(4)
+        deck["slug"] = generate_slug()
 
     save_deck(deck_yaml_path, deck)
     print(f"froze {presentation_dir.name} — {len(new_slides)} slides now local, frozen: true")
@@ -197,6 +206,35 @@ def generate_landing_page() -> None:
     print("built dist/index.html (landing page)")
 
 
+def free_port() -> int:
+    import socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(("", 0))
+        return s.getsockname()[1]
+
+
+def serve(directory: Path) -> None:
+    """Serve `directory` over HTTP and open it in the default browser.
+    Blocks until Ctrl+C — required (not just convenient) for slides with
+    <iframe>-embedded interactives, which browsers refuse to load over a
+    bare file:// path."""
+    import time
+    import webbrowser
+
+    port = free_port()
+    proc = subprocess.Popen(
+        [sys.executable, "-m", "http.server", str(port), "--directory", str(directory)]
+    )
+    url = f"http://localhost:{port}/"
+    time.sleep(0.3)
+    print(f"previewing {directory} at {url}  (Ctrl+C to stop)")
+    webbrowser.open(url)
+    try:
+        proc.wait()
+    except KeyboardInterrupt:
+        proc.terminate()
+
+
 def resolve_presentation_arg(arg: str) -> Path:
     candidate = PRESENTATIONS / arg
     if (candidate / "deck.yaml").is_file():
@@ -216,6 +254,8 @@ def main() -> None:
                          help="copy lib: slides local, rewrite manifest, set frozen: true")
     parser.add_argument("--no-generate", action="store_true",
                          help="skip running slide generator scripts (fast preview)")
+    parser.add_argument("--preview", action="store_true",
+                         help="after building, serve the output and open it in a browser")
     args = parser.parse_args()
 
     if args.freeze:
@@ -226,13 +266,17 @@ def main() -> None:
         for pdir in all_presentation_dirs():
             build_deck(pdir, no_generate=args.no_generate)
         generate_landing_page()
+        if args.preview:
+            serve(DIST)
         return
 
     if not args.presentation:
         parser.error("specify a presentation, or use --all / --freeze")
 
-    build_deck(resolve_presentation_arg(args.presentation), no_generate=args.no_generate)
+    out_dir = build_deck(resolve_presentation_arg(args.presentation), no_generate=args.no_generate)
     generate_landing_page()
+    if args.preview:
+        serve(out_dir)
 
 
 if __name__ == "__main__":

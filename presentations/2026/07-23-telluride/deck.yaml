@@ -1,0 +1,15 @@
+title: Investigating Deep UV Driven Photochemistry in Alkenes with sub 10 fs Time
+  Resolution
+presentation_name: 07-23-telluride
+year: 2026
+visibility: listed
+frozen: false
+slug: c3824be8
+theme: slac
+reveal_config:
+  transition: slide
+  controls: true
+slides:
+- slides/title/title.html
+- lib: experiments/cxi_irf
+- slides/acknowledgements/acknowledgements.html
