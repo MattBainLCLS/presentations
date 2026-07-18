@@ -118,7 +118,7 @@ def copy_theme_and_reveal(dest_dir: Path) -> None:
                      ignore=shutil.ignore_patterns("*.tgz"))
 
 
-def build_deck(presentation_dir: Path, no_generate: bool = False) -> Path:
+def build_deck(presentation_dir: Path, generate: bool = False) -> Path:
     deck_yaml_path = presentation_dir / "deck.yaml"
     deck = ensure_slug(deck_yaml_path, load_deck(deck_yaml_path))
 
@@ -126,7 +126,7 @@ def build_deck(presentation_dir: Path, no_generate: bool = False) -> Path:
     for entry, (slide_dir, slide_name) in zip(deck["slides"], resolve_slides(deck, presentation_dir)):
         html_filename = Path(entry).name if isinstance(entry, str) else f"{slide_name}.html"
         html_path = slide_dir / html_filename
-        if not deck.get("frozen") and not no_generate:
+        if not deck.get("frozen") and generate:
             run_generators(slide_dir)
         html = html_path.read_text()
         slide_htmls.append(rewrite_asset_paths(html, slide_name))
@@ -252,8 +252,10 @@ def main() -> None:
     parser.add_argument("--all", action="store_true", help="build every presentation")
     parser.add_argument("--freeze", metavar="PRESENTATION",
                          help="copy lib: slides local, rewrite manifest, set frozen: true")
-    parser.add_argument("--no-generate", action="store_true",
-                         help="skip running slide generator scripts (fast preview)")
+    parser.add_argument("--generate", action="store_true",
+                         help="also (re)run slide generator scripts to refresh figures "
+                              "(off by default — skipped so ordinary builds/previews don't "
+                              "silently touch committed library figures)")
     parser.add_argument("--preview", action="store_true",
                          help="after building, serve the output and open it in a browser")
     args = parser.parse_args()
@@ -264,7 +266,7 @@ def main() -> None:
 
     if args.all:
         for pdir in all_presentation_dirs():
-            build_deck(pdir, no_generate=args.no_generate)
+            build_deck(pdir, generate=args.generate)
         generate_landing_page()
         if args.preview:
             serve(DIST)
@@ -273,7 +275,7 @@ def main() -> None:
     if not args.presentation:
         parser.error("specify a presentation, or use --all / --freeze")
 
-    out_dir = build_deck(resolve_presentation_arg(args.presentation), no_generate=args.no_generate)
+    out_dir = build_deck(resolve_presentation_arg(args.presentation), generate=args.generate)
     generate_landing_page()
     if args.preview:
         serve(out_dir)

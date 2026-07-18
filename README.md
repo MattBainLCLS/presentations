@@ -62,8 +62,11 @@ evolving.
    .venv/bin/python build.py <year>/<name> --preview
    ```
 
-   Add `--no-generate` to skip re-running figure-generator scripts for a
-   faster preview loop.
+   Generator scripts are **not** re-run by default — add `--generate` when
+   you've actually edited a slide's `scripts/*.py` and need its figures
+   refreshed. This keeps ordinary preview/build runs from silently touching
+   committed library figures (regeneration isn't perfectly byte-reproducible
+   across runs/machines).
 4. Push to `main` to deploy (see Privacy/visibility below for what that
    means for `unlisted` decks).
 
