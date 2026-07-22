@@ -98,7 +98,7 @@ html = f"""<!DOCTYPE html>
   #pulse-marker {{
     position: absolute; top: 0; left: 0; width: 44px;
     margin-left: -22px;
-    transition: left 90ms linear, top 90ms linear;
+    transition: left 66ms linear, top 66ms linear;
     z-index: 5;
   }}
   #fiber-track {{
@@ -157,7 +157,7 @@ var Y_AXIS     = {Y_AXIS};
 var Y_MIRROR_2 = {Y_MIRROR_2};
 var MIRROR_TILT_DEG = {MIRROR_TILT_DEG};
 
-var STEP_MS = 90;
+var STEP_MS = 66;
 var FIBER_TIME_MS = (nSteps - 1) * STEP_MS;
 
 var layout = {{
@@ -328,7 +328,7 @@ function play() {{
   running = true;
   cancelToken++;
   var myToken = cancelToken;
-  marker.style.transition = "left 90ms linear, top 90ms linear";
+  marker.style.transition = "left 66ms linear, top 66ms linear";
   marker.src = "../figures/pulse_gaussian.svg";
   setStep(0);
   timer = setInterval(function() {{ fiberStep(myToken); }}, STEP_MS);
