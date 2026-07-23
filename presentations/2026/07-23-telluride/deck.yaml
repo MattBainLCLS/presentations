@@ -14,6 +14,7 @@ slides:
 - slides/uv_generation_routes/uv_generation_routes.html
 - lib: solitons/soliton_intro
 - slides/fiber_types/fiber_types.html
+- slides/soliton_conditions/soliton_conditions.html
 - slides/spm_fiber_broadening/spm_fiber_broadening.html
 - slides/soliton_self_compression_animated/soliton_self_compression_animated.html
 - lib: rdw/rdw_tunability
