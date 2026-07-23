@@ -30,5 +30,4 @@ slides:
 - slides/backup_divider/backup_divider.html
 - lib: solitons/generating_a_soliton
 - slides/scattering_highlights/scattering_highlights.html
-- lib: experiments/scattering_decomposition
 - slides/scattering_full_surface/scattering_full_surface.html
