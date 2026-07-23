@@ -8,9 +8,9 @@ slug: c3824be8
 theme: slac
 slides:
 - slides/title/title.html
-- slides/acknowledgements/acknowledgements.html
 - slides/slac_site/slac_site.html
 - slides/timescales/timescales.html
+- slides/acknowledgements/acknowledgements.html
 - slides/uv_generation_routes/uv_generation_routes.html
 - lib: solitons/soliton_intro
 - slides/fiber_types/fiber_types.html
