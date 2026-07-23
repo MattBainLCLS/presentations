@@ -1,37 +1,30 @@
         <section>
-          <h3 style="margin: 0 0 0.3em;">Why No Coherent Oscillations in the Data?</h3>
-          <div style="display: flex; gap: 1.3em; align-items: stretch;">
+          <h3 style="margin: 0 0 0.25em;">Why No Oscillations in the Data?</h3>
+          <div style="display: flex; gap: 0.7em; align-items: center; margin-left: -2%;">
 
-            <!-- Left: stacked temporal line-outs, experiment above theory -->
-            <div style="flex: 1.15; display: flex; flex-direction: column; gap: 0.55em; min-width: 0;">
-              <div style="flex: 1; min-height: 165px; border: 2px dashed #bbb; border-radius: 6px;
-                          background: #fafafa; display: flex; align-items: center; justify-content: center;
-                          color: #999; font-size: 0.4em; text-align: center; padding: 0.5em;">
-                Experiment — $\Delta S(\tau)$ line-out
-              </div>
-              <div style="flex: 1; min-height: 165px; border: 2px dashed #bbb; border-radius: 6px;
-                          background: #fafafa; display: flex; align-items: center; justify-content: center;
-                          color: #999; font-size: 0.4em; text-align: center; padding: 0.5em;">
-                Simulation ($v=0$ Wigner) — $\Delta S(\tau)$ line-out
-              </div>
-              <p style="font-size: 0.3em; color: #666; text-align: center; margin: 0;">
-                Temporal line-out at $Q \approx 4.5$ Å⁻¹
-              </p>
+            <!-- Left: 2x2 grid of temporal line-outs, experiment above simulation -->
+            <div style="flex: 3.2; display: grid; grid-template-columns: auto 1fr 1fr;
+                        gap: 0.12em 0.4em; align-items: center;">
+              <div></div>
+              <div style="text-align: center; font-size: 0.32em; color: #44546A; font-weight: 600;">Q = 4.3–4.7 Å⁻¹</div>
+              <div style="text-align: center; font-size: 0.32em; color: #44546A; font-weight: 600;">Q = 0.8–1.5 Å⁻¹</div>
+
+              <div style="font-size: 0.32em; color: #44546A; font-weight: 600; writing-mode: vertical-rl; transform: rotate(180deg); text-align: center;">Experiment</div>
+              <img src="figures/data_vs_time_4.3_4.7.png" style="width: 100%; display: block;" />
+              <img src="figures/data_vs_time_0.8_1.5.png" style="width: 100%; display: block;" />
+
+              <div style="font-size: 0.32em; color: #44546A; font-weight: 600; writing-mode: vertical-rl; transform: rotate(180deg); text-align: center;">Simulation</div>
+              <img src="figures/scattering_vs_time_4.3_4.7.png" style="width: 100%; display: block;" />
+              <img src="figures/scattering_vs_time_0.8_1.5.png" style="width: 100%; display: block;" />
             </div>
 
-            <!-- Right: explanation -->
-            <div style="flex: 1; font-size: 0.40em;">
+            <!-- Right: reduced explanation -->
+            <div style="flex: 1.4; font-size: 0.44em;">
               <div class="col-box" style="border: 1px solid #ddd; border-radius: 8px; padding: 0.7em 0.9em;">
                 <ul style="margin: 0; padding-left: 1.2em;">
-                  <li>Simulations sample a <strong>$v=0$ Wigner distribution</strong> — the vibrational ground state, i.e. effectively vibrationally cold</li>
-                  <li>Theory predicts <strong>coherent oscillations</strong> in $\Delta S(\tau)$, but the measured signal rises smoothly with the oscillation washed out</li>
-                  <li>Two low-frequency modes are likely <strong>vibrationally hot</strong> in the real sample and dephase the coherent motion:
-                    <ul style="margin: 0.25em 0 0; padding-left: 1.1em; list-style: none;">
-                      <li>C–C torsion — <strong>168 cm⁻¹</strong> &nbsp;($\approx$ 200 fs period)</li>
-                      <li>C–C=C deformation — <strong>293 cm⁻¹</strong> &nbsp;($\approx$ 114 fs period)</li>
-                    </ul>
-                  </li>
-                  <li>These periods overlap the structural-oscillation timescale, so thermal spread across the modes smears the coherence in the ensemble average</li>
+                  <li><strong>65 fs (513 cm⁻¹)</strong> oscillation in simulation</li>
+                  <li>Matches C–C=C $A_g$ deformation mode</li>
+                  <li>C–C torsion $A_u$ (168 cm⁻¹, 200 fs) and C–C=C deformation $B_u$ (293 cm⁻¹, 114 fs) thermally accessible</li>
                 </ul>
               </div>
             </div>

@@ -19,13 +19,16 @@ slides:
 - lib: rdw/rdw_tunability
 - slides/xray_scattering_intro/xray_scattering_intro.html
 - slides/butadiene_dynamics/butadiene_dynamics.html
+- slides/population_evolution/population_evolution.html
 - lib: experiments/butadiene_irf
-- slides/scattering_highlights/scattering_highlights.html
-- lib: experiments/butadiene_theory
-- lib: experiments/scattering_decomposition
-- slides/scattering_full_surface/scattering_full_surface.html
+- slides/butadiene_theory/butadiene_theory.html
+- slides/mode_decompositions/mode_decompositions.html
 - slides/scattering_time_resolved_decomposition/scattering_time_resolved_decomposition.html
 - slides/decomposition_vs_experiment/decomposition_vs_experiment.html
 - slides/vibrational_washout/vibrational_washout.html
+- slides/future_outlook/future_outlook.html
 - slides/backup_divider/backup_divider.html
 - lib: solitons/generating_a_soliton
+- slides/scattering_highlights/scattering_highlights.html
+- lib: experiments/scattering_decomposition
+- slides/scattering_full_surface/scattering_full_surface.html
