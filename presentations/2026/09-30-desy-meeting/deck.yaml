@@ -9,6 +9,8 @@ slides:
 - slides/title/title.html
 - lib: solitons/soliton_intro
 - lib: fiber-hardware/fiber_types
+- lib: solitons/soliton_conditions
+- lib: nonlinear-optics/spm_fiber_broadening
 - lib: solitons/generating_a_soliton
 - lib: solitons/soliton_self_compression_animated
 - lib: rdw/rdw_tunability
