@@ -1,0 +1,26 @@
+title: Soliton Continua for Transient Absorption Spectroscopy
+presentation_name: 09-30-desy-meeting
+year: 2026
+visibility: unlisted
+frozen: false
+slug: bb2ef696
+theme: slac
+slides:
+- slides/title/title.html
+- lib: solitons/soliton_intro
+- lib: fiber-hardware/fiber_types
+- lib: solitons/generating_a_soliton
+- lib: solitons/soliton_self_compression_animated
+- lib: rdw/rdw_tunability
+- slides/scattering_full_surface/scattering_full_surface.html
+- slides/butadiene_irf/butadiene_irf.html
+- slides/soliton_probe_reframe/soliton_probe_reframe.html
+- slides/solution_ta_challenge/solution_ta_challenge.html
+- slides/soliton_apparatus/soliton_apparatus.html
+- slides/ta_spectroscopy_intro/ta_spectroscopy_intro.html
+- slides/dmu_intro/dmu_intro.html
+- slides/dmu_ta_data/dmu_ta_data.html
+- slides/dmu_mechanism/dmu_mechanism.html
+- slides/dmu_ta_kinetics/dmu_ta_kinetics.html
+- slides/water_2pa/water_2pa.html
+- slides/acknowledgements/acknowledgements.html
