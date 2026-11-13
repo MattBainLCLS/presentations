@@ -1,0 +1,34 @@
+title: Investigating Deep-UV Driven Photochemistry in Alkenes with Sub-10fs Time Resolution
+presentation_name: 11-16-stony-brook
+year: 2026
+visibility: unlisted
+frozen: false
+slug: faa78480
+theme: slac
+slides:
+- slides/title/title.html
+- slides/slac_site/slac_site.html
+- slides/timescales/timescales.html
+- slides/acknowledgements/acknowledgements.html
+- slides/uv_generation_routes/uv_generation_routes.html
+- slides/soliton_intro/soliton_intro.html
+- slides/fiber_types/fiber_types.html
+- slides/soliton_conditions/soliton_conditions.html
+- slides/spm_fiber_broadening/spm_fiber_broadening.html
+- slides/soliton_self_compression_animated/soliton_self_compression_animated.html
+- slides/rdw_tunability/rdw_tunability.html
+- lib: xfel/undulator_wiggle
+- slides/xray_scattering_intro/xray_scattering_intro.html
+- slides/butadiene_dynamics/butadiene_dynamics.html
+- slides/population_evolution/population_evolution.html
+- slides/butadiene_irf/butadiene_irf.html
+- slides/butadiene_theory/butadiene_theory.html
+- slides/mode_decompositions/mode_decompositions.html
+- slides/scattering_time_resolved_decomposition/scattering_time_resolved_decomposition.html
+- slides/decomposition_vs_experiment/decomposition_vs_experiment.html
+- slides/vibrational_washout/vibrational_washout.html
+- slides/future_outlook/future_outlook.html
+- slides/backup_divider/backup_divider.html
+- slides/generating_a_soliton/generating_a_soliton.html
+- slides/scattering_highlights/scattering_highlights.html
+- slides/scattering_full_surface/scattering_full_surface.html
