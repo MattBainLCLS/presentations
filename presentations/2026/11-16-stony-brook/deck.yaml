@@ -10,8 +10,8 @@ slides:
 - slides/slac_site/slac_site.html
 - lib: xfel/linac_acceleration
 - lib: xfel/undulator_wiggle
+- lib: xfel/xray_experiments_overview
 - slides/timescales/timescales.html
-- slides/acknowledgements/acknowledgements.html
 - slides/uv_generation_routes/uv_generation_routes.html
 - slides/soliton_intro/soliton_intro.html
 - slides/fiber_types/fiber_types.html
@@ -29,6 +29,7 @@ slides:
 - slides/decomposition_vs_experiment/decomposition_vs_experiment.html
 - slides/vibrational_washout/vibrational_washout.html
 - slides/future_outlook/future_outlook.html
+- slides/acknowledgements/acknowledgements.html
 - slides/backup_divider/backup_divider.html
 - slides/generating_a_soliton/generating_a_soliton.html
 - slides/scattering_highlights/scattering_highlights.html
