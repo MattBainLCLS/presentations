@@ -8,6 +8,8 @@ theme: slac
 slides:
 - slides/title/title.html
 - slides/slac_site/slac_site.html
+- lib: xfel/linac_acceleration
+- lib: xfel/undulator_wiggle
 - slides/timescales/timescales.html
 - slides/acknowledgements/acknowledgements.html
 - slides/uv_generation_routes/uv_generation_routes.html
@@ -17,7 +19,6 @@ slides:
 - slides/spm_fiber_broadening/spm_fiber_broadening.html
 - slides/soliton_self_compression_animated/soliton_self_compression_animated.html
 - slides/rdw_tunability/rdw_tunability.html
-- lib: xfel/undulator_wiggle
 - slides/xray_scattering_intro/xray_scattering_intro.html
 - slides/butadiene_dynamics/butadiene_dynamics.html
 - slides/population_evolution/population_evolution.html
