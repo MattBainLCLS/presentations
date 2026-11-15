@@ -5,17 +5,19 @@ camera turned only about the vertical axis so each disc projects to an
 upright ellipse whose vertical axis is exactly the seam between halves.
 
 Field: a pure standing wave (not travelling)
-    E(z, t) = A cos(k (z - z0)) cos(w t),   k = pi / d
-so the antinodes sit exactly on the irises (discs) at z0 + n d, and the
-field falls to nodes half a cell outside the first/last disc.
+    E(z, t) = A sin(k (z - z0)) cos(w t),   k = pi / d
+so the field's zero points sit exactly on the irises (discs) at z0 + n d,
+with the oscillation peaking at each cell centre. The field is drawn only
+between the first and last disc (zero at both ends).
 
 Electron phasing: bunches move at v = w / k (one cell per half RF period)
-and sit at z_e = z0 + v t + m * 2d. The field seen by each bunch is then
+and sit at z_e = z0 + d/2 + v t + m * 2d (shifted a quarter wavelength,
+the same as the field). The field seen by each bunch is then
     E(z_e, t) = cos(w t) * cos(w t) = cos^2(w t) >= 0,
-i.e. every bunch only ever sees the accelerating half of the RF: it is
-riding the crest when it reaches each disc and crosses the cell midplane
-exactly when the whole field passes through zero. Bunches are spaced by a
-full RF wavelength (2d) — a bunch one cell later would see -cos^2.
+i.e. every bunch only ever sees the accelerating half of the RF: it sits
+on the crest at each cell centre and passes through each disc exactly
+when the whole field crosses zero. Bunches are spaced by a full RF
+wavelength (2d) — a bunch one cell later would see -cos^2.
 
 Disc occlusion trick: each disc is two C-shaped half-annuli split along
 the vertical (x = 0) plane the wave lives in. The far half (x > 0) is
@@ -73,9 +75,9 @@ var RF_PERIOD = {RF_PERIOD};
 var ENTRANCE  = {ENTRANCE};
 var EXIT      = {EXIT};
 
-var Z0     = ENTRANCE;                          // first disc / antinode
-var Z_LAST = Z0 + (N_DISCS - 1) * CELL;         // last disc / antinode
-var F_MIN  = Z0 - CELL / 2, F_MAX = Z_LAST + CELL / 2;   // field region (nodes at ends)
+var Z0     = ENTRANCE;                          // first disc (field zero)
+var Z_LAST = Z0 + (N_DISCS - 1) * CELL;         // last disc (field zero)
+var F_MIN  = Z0, F_MAX = Z_LAST;               // field lives between first and last disc
 var Z_FULL = Z_LAST + EXIT;
 var K      = Math.PI / CELL;
 var OMEGA  = 2 * Math.PI / RF_PERIOD;
@@ -178,7 +180,7 @@ function renderLayers() {{
 
 function fieldAt(z, t) {{
   if (z < F_MIN || z > F_MAX) return 0;
-  return AMP * Math.cos(K * (z - Z0)) * Math.cos(OMEGA * t);
+  return AMP * Math.sin(K * (z - Z0)) * Math.cos(OMEGA * t);
 }}
 
 function drawField(t) {{
@@ -202,8 +204,8 @@ function drawElectrons(t) {{
   ctx.fillStyle = COLOR_ELECTRON;
   ctx.strokeStyle = 'rgba(150,110,0,0.55)';
   ctx.lineWidth = 0.6;
-  // Bunch centres: Z0 + V_E t + m * BUNCH_SPACING for all integers m.
-  var base = Z0 + V_E * t;
+  // Bunch centres: Z0 + CELL/2 + V_E t + m * BUNCH_SPACING for all integers m.
+  var base = Z0 + CELL / 2 + V_E * t;
   var mMin = Math.floor((-0.5 - base) / BUNCH_SPACING);
   var mMax = Math.ceil((Z_FULL + 0.5 - base) / BUNCH_SPACING);
   for (var m = mMin; m <= mMax; m++) {{
