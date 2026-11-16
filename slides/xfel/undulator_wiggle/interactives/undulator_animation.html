@@ -222,8 +222,10 @@ function drawField(zNow, bunchFrac) {
     var u = (z - leftEdge) / span;
     var bell = Math.sin(Math.PI * u);
     var env = bell * bell;
-    var y = amp * env * Math.cos(2 * Math.PI * (z - zNow) / LAMBDA_R);
-    var pp = project(0, y, z);
+    // Field displacement is along x, the electrons' wiggle direction: a planar
+    // undulator radiates linearly polarised light in the wiggle plane.
+    var xf = amp * env * Math.cos(2 * Math.PI * (z - zNow) / LAMBDA_R);
+    var pp = project(xf, 0, z);
     if (i === 0) ctx.moveTo(pp.sx, pp.sy); else ctx.lineTo(pp.sx, pp.sy);
   }
   ctx.stroke();
