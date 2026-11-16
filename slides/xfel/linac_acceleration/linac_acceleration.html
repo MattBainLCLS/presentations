@@ -1,9 +1,13 @@
         <section>
           <h3>Accelerating the Electrons: RF Linac</h3>
-          <iframe
-            src="interactives/linac_animation.html"
-            style="width: 100%; height: 420px; border: none;"
-          ></iframe>
+          <!-- Wider than the text column (breaks out ~13% each side) and centred in the
+               space below the title; the iframe's own body centres the trimmed canvas. -->
+          <div style="height: 520px; display: flex; align-items: center;">
+            <iframe
+              src="interactives/linac_animation.html"
+              style="width: 126%; max-width: none; margin-left: -13%; height: 320px; border: none; flex: none;"
+            ></iframe>
+          </div>
           <aside class="notes">
             <ul>
               <li>Placeholder: disc-loaded RF structure with a standing-wave field; bunches are phased so they only ever see the accelerating half of the RF.</li>

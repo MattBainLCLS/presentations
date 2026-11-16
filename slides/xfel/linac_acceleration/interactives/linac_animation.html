@@ -4,7 +4,9 @@
 <meta charset="utf-8"/>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Lato', sans-serif; background: white; padding: 6px 12px 4px; }
+  html, body { height: 100%; }
+  body { font-family: 'Lato', sans-serif; background: white; padding: 0 8px;
+         display: flex; align-items: center; }   /* canvas centred in whatever height the iframe has */
   canvas { display: block; width: 100%; }
 </style>
 </head>
@@ -20,8 +22,8 @@ var R_HOLE    = 0.19;
 var AMP       = 0.46;
 var XF        = 0.38;
 var RF_PERIOD = 2.2;
-var ENTRANCE  = 1.3;
-var EXIT      = 1.3;
+var ENTRANCE  = 0.7;
+var EXIT      = 0.7;
 
 var Z0     = ENTRANCE;                          // first disc (field zero)
 var Z_LAST = Z0 + (N_DISCS - 1) * CELL;         // last disc (field zero)
@@ -89,15 +91,16 @@ function drawHalfDisc(c, z, a0, a1) {
 function layout() {
   DPR = window.devicePixelRatio || 1;
   var w = canvas.clientWidth || 800;
-  var h = Math.round(w * 0.30);
+  var marginX = 6;
+  SCALE = (w - 2 * marginX) / (Z_FULL + 2 * R_OUT * XF);
+  // canvas is trimmed to the drawing: tallest feature (disc or wave) + small pad
+  var h = Math.round(2 * Math.max(R_OUT, AMP) * SCALE + 16);
   canvas.style.height = h + 'px';
   [canvas, bgCanvas, fgCanvas].forEach(function (cv) {
     cv.width = w * DPR; cv.height = h * DPR;
   });
   [ctx, bgCtx, fgCtx].forEach(function (c) { c.setTransform(DPR, 0, 0, DPR, 0, 0); });
 
-  var marginX = 30;
-  SCALE = (w - 2 * marginX) / (Z_FULL + 2 * R_OUT * XF);
   ORIGIN_X = marginX + R_OUT * XF * SCALE;
   ORIGIN_Y = h / 2;
 
@@ -177,12 +180,13 @@ function drawFrame(t) {
   ctx.drawImage(fgCanvas, 0, 0, w, h);   // near disc halves
 }
 
-var cancelToken = 0, running = false, t0 = null;
+var cancelToken = 0, running = false, t0 = null, lastT = 0;
 
 function frame(myToken, now) {
   if (myToken !== cancelToken) return;
   if (t0 === null) t0 = now;
-  drawFrame((now - t0) / 1000);
+  lastT = (now - t0) / 1000;
+  drawFrame(lastT);
   requestAnimationFrame(function (n) { frame(myToken, n); });
 }
 
@@ -204,7 +208,9 @@ var observer = new IntersectionObserver(function (entries) {
 }, { threshold: 0.5 });
 observer.observe(document.documentElement);
 
-window.addEventListener('resize', function () { layout(); drawFrame(0); });
+// Re-fit whenever the iframe's size changes (e.g. slide laid out after load).
+new ResizeObserver(function () { layout(); drawFrame(lastT); }).observe(document.body);
+window.addEventListener('resize', function () { layout(); drawFrame(lastT); });
 layout();
 drawFrame(0);
 </script>

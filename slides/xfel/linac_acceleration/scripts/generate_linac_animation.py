@@ -38,8 +38,8 @@ AMP        = 0.46          # RF field amplitude drawn (between hole and outer ed
 X_FORESHORTEN = 0.38       # camera turned about the vertical axis only: depth (x) maps to
                            # screen-horizontal, so discs are upright ellipses with a vertical seam
 RF_PERIOD  = 2.2           # seconds per RF cycle
-ENTRANCE   = 1.3           # drift length shown before first disc
-EXIT       = 1.3           # drift length shown after last disc
+ENTRANCE   = 0.7           # drift length shown before first disc
+EXIT       = 0.7           # drift length shown after last disc
 
 N_PER_BUNCH = 26
 rng = np.random.default_rng(3)
@@ -56,7 +56,9 @@ html = f"""<!DOCTYPE html>
 <meta charset="utf-8"/>
 <style>
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ font-family: 'Lato', sans-serif; background: white; padding: 6px 12px 4px; }}
+  html, body {{ height: 100%; }}
+  body {{ font-family: 'Lato', sans-serif; background: white; padding: 0 8px;
+         display: flex; align-items: center; }}   /* canvas centred in whatever height the iframe has */
   canvas {{ display: block; width: 100%; }}
 </style>
 </head>
@@ -141,15 +143,16 @@ function drawHalfDisc(c, z, a0, a1) {{
 function layout() {{
   DPR = window.devicePixelRatio || 1;
   var w = canvas.clientWidth || 800;
-  var h = Math.round(w * 0.30);
+  var marginX = 6;
+  SCALE = (w - 2 * marginX) / (Z_FULL + 2 * R_OUT * XF);
+  // canvas is trimmed to the drawing: tallest feature (disc or wave) + small pad
+  var h = Math.round(2 * Math.max(R_OUT, AMP) * SCALE + 16);
   canvas.style.height = h + 'px';
   [canvas, bgCanvas, fgCanvas].forEach(function (cv) {{
     cv.width = w * DPR; cv.height = h * DPR;
   }});
   [ctx, bgCtx, fgCtx].forEach(function (c) {{ c.setTransform(DPR, 0, 0, DPR, 0, 0); }});
 
-  var marginX = 30;
-  SCALE = (w - 2 * marginX) / (Z_FULL + 2 * R_OUT * XF);
   ORIGIN_X = marginX + R_OUT * XF * SCALE;
   ORIGIN_Y = h / 2;
 
@@ -229,12 +232,13 @@ function drawFrame(t) {{
   ctx.drawImage(fgCanvas, 0, 0, w, h);   // near disc halves
 }}
 
-var cancelToken = 0, running = false, t0 = null;
+var cancelToken = 0, running = false, t0 = null, lastT = 0;
 
 function frame(myToken, now) {{
   if (myToken !== cancelToken) return;
   if (t0 === null) t0 = now;
-  drawFrame((now - t0) / 1000);
+  lastT = (now - t0) / 1000;
+  drawFrame(lastT);
   requestAnimationFrame(function (n) {{ frame(myToken, n); }});
 }}
 
@@ -256,7 +260,9 @@ var observer = new IntersectionObserver(function (entries) {{
 }}, {{ threshold: 0.5 }});
 observer.observe(document.documentElement);
 
-window.addEventListener('resize', function () {{ layout(); drawFrame(0); }});
+// Re-fit whenever the iframe's size changes (e.g. slide laid out after load).
+new ResizeObserver(function () {{ layout(); drawFrame(lastT); }}).observe(document.body);
+window.addEventListener('resize', function () {{ layout(); drawFrame(lastT); }});
 layout();
 drawFrame(0);
 </script>
